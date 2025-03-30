@@ -1,0 +1,21 @@
+#include instrumentMaps.event
+
+SongTable(Distant_Roads,Onward,MapMusicGroup)
+#include "tracks/Onward.event"
+ALIGN 4
+
+SongTable(Rise_Above,March,MapMusicGroup)
+#include "tracks/March.event"
+ALIGN 4
+
+SongTable(In_the_Colosseum,AllyAttack,BattleMusicGroup)
+#include "tracks/AllyAttack.event"
+ALIGN 4
+
+SongTable(0x2F,Strike,BattleMusicGroup)
+#include "tracks/Strike.event"
+ALIGN 4
+
+SongTable(The_Princes_Despair,SoftlyWithGrace,BattleMusicGroup)
+#include "tracks/SoftlyWithGrace.event"
+ALIGN 4

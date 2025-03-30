@@ -1,0 +1,28 @@
+schema = "item"
+
+[SteelSword]
+weight = 7
+
+[SteelLance]
+weight = 9
+
+[SteelAxe]
+weight = 12
+
+[Javelin]
+weight = 8
+
+[Spear]
+weight = 10
+
+[Elfire]
+weight = 8
+
+[Bolting]
+weight = 15
+
+[Fimbulvetr]
+weight = 10
+
+[Excalibur]
+weight = 7

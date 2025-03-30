@@ -1,0 +1,8 @@
+ALIGN 4
+Tutorial:
+AltMiscEventsA:
+AltMiscEventsB:
+AltMiscEventsC:
+WORD $0
+
+#include TheChapter/main.event

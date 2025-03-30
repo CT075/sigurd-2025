@@ -1,0 +1,878 @@
+# 0x00D4 ExplainHidden
+
+This chapter has multiple[NL]
+[ToggleRed]hidden objectives[ToggleRed].[A][X]
+
+# # ExplainGrade
+
+At the end of the map,[NL]
+you'll get a [ToggleRed]grade[ToggleRed][NL]
+based on how many you[NL]
+found.[A][X]
+
+# # ExplainMutuallyExclusive
+
+Note that some objectives[NL]
+are [ToggleRed]mutually exclusive[ToggleRed],[NL]
+so you can't get them all[NL]
+in one run.[A][X]
+
+# # ExplainGoToCastle
+
+Anyway, your goal is to[NL]
+[ToggleRed]end the chapter[ToggleRed] by [ToggleRed]reaching[NL]
+the castle with Eirika.[ToggleRed][A]
+[X]
+
+# # ExplainSeize
+
+Note that [ToggleRed]reaching the castle[NL]
+is enough.[ToggleRed] There's [ToggleRed]no need to[NL]
+seize your own castle[ToggleRed], after[NL]
+all.[A]
+[X]
+
+# 0x01A2 StartingGoal
+
+Reach Castle[X]
+
+# 0x0160 ChapterTitle
+
+Diversions[X]
+
+# 0x0903 OpeningText
+
+[OpenMidLeft][LoadFace][0x2][0x1]
+The Demon King killed my family[NL]
+and took over my country![A][NL]
+[CloseSpeechSlow]
+[ToggleMouthMove]
+...[A][NL]
+[ToggleMouthMove]
+[ToggleSmile][CloseSpeechSlow]
+Just kidding![A][NL]
+[CloseSpeechFast]
+I sure hope nothing happens[NL]
+on my peaceful ride home...[A]
+[X]
+
+# # OpeningBandits
+
+[OpenMidLeft][LoadFace][0x4C][0x1]
+Hey, look! Is that the princess?[NL]
+Time to cause trouble![A][NL]
+[X]
+
+# # FlierSpawn
+
+[OpenMidLeft][LoadFace][0x8][0x1]
+Princess! Enemies approach![A][NL]
+They'll arrive in [ToggleRed]two minutes![ToggleRed][A]
+[X]
+
+# # EarlyMageGeneric
+
+[OpenMidLeft][LoadFace][0x22][0x1]
+[OpenMidRight][LoadFace][0xFF][0xFF]
+[OpenMidLeft]
+Why, hello![A][NL]
+Are you headed to the[NL]
+castle?[A][NL]
+Well, I simply must join[NL]
+you![A]
+[X]
+
+# # EarlyMageEirika
+
+[OpenMidLeft][LoadFace][0x22][0x1]
+[OpenMidRight][LoadFace][0x2][0x1]
+[OpenMidLeft]
+Why, Eirika![A][NL]
+What providence that we[NL]
+should meet here![A][NL]
+Are you headed to the[NL]
+castle?[A][NL]
+Well, I simply must join[NL]
+you![A]
+[X]
+
+# # LateMageGeneric
+
+[OpenMidLeft][LoadFace][0x22][0x1]
+[OpenMidRight][LoadFace][0xFF][0xFF]
+[OpenMidLeft]
+Why, hello![A][NL]
+Are you involved with this[NL]
+nasty business outdoors?[A][NL]
+Well, I simply must join you![A]
+[X]
+
+# # LateMageEirika
+
+[OpenMidLeft][LoadFace][0x22][0x1]
+[OpenMidRight][LoadFace][0x2][0x1]
+[OpenMidLeft]
+Why, Eirika![A][NL]
+What providence that we should[NL]
+meet here, on this day![A][NL]
+Are you involved with this[NL]
+nasty business outdoors?[A][NL]
+Well, I simply must join you![A]
+[X]
+
+# # SorryLostBolting
+
+[OpenMidLeft][LoadFace][0x22][0x1]
+It's a shame, but I seem[NL]
+to have misplaced my tome[A][NL]
+of divine thunder when that[NL]
+band of ruffians arrived.[A][NL]
+Without it, I won't be able[NL]
+to [ToggleRed]smite foes from afar.[ToggleRed][A][NL]
+If you had [ToggleRed]arrived just a[NL]
+few minutes earlier,[ToggleRed] I would[A][NL]
+have had it on hand.[A]
+[X]
+
+# # DontSeize1
+
+[OpenMidLeft][LoadFace][0x2][0x1]
+Phew! We've seized the[NL]
+castle gate![A]
+[CloseSpeechSlow]
+[ToggleMouthMove]
+...[A]
+[ToggleMouthMove]
+[OpenMidLeft]
+Wait, isn't this already[NL]
+our castle?[A] Why did we[NL]
+need to seize it, again?[A]
+[X]
+
+# # DontSeize2
+
+Alright, wise guy.[A]
+[X]
+
+# # DontSeize3
+
+Did you think you were[NL]
+being clever?[A]
+[X]
+
+# # DontSeize4
+
+Well, you were.[NL]
+[X]
+
+# # DontSeize5
+
+[ToggleRed]But.[ToggleRed][A]
+[X]
+
+# # DontSeize6
+
+Didn't I already tell you[NL]
+that [ToggleRed]you don't need to seize[NL]
+your own castle?[ToggleRed][A]
+[X]
+
+# # DontSeize7
+
+To end the chapter, [ToggleRed]Eirika[NL]
+just needs to stand on the[NL]
+castle tile.[ToggleRed][A]
+[X]
+
+# # DontSeize8
+
+Now go back and do it[NL]
+again! Properly, this[NL]
+time![A]
+[X]
+
+# # GiveMemberCardText
+
+[OpenMidLeft][LoadFace][0x64][0x1]
+Hmm... What to do...[A]
+[OpenMidRight][LoadFace][0xFF][0xFF]
+Um...[A]
+[OpenMidLeft]
+Oh, hello! Welcome to-[A][NL]
+Well, I guess there's[NL]
+not much here.[A]
+I mean, setting up shop[NL]
+middle of a mountain?[A][NL]
+Who even does that?[A][NL]
+[CloseSpeechFast]
+Anyway, there's no secret shop[NL]
+here.[A] You'll want to check[NL]
+around the [ToggleRed]northwest peaks[ToggleRed].[A]
+[CloseSpeechSlow]
+Oh yeah, take this.[A][NL]
+You'll need it to[NL]
+get in. Good luck![A]
+[X]
+
+# # SecretEndingDialogue
+
+[OpenMidLeft][LoadFace][0x2][0x1]
+I'm home![A][NL]
+[CloseSpeechSlow]
+I feel like something[NL]
+was meant to happen...[A][NL]
+[CloseSpeechSlow]
+Oh well. Time to[NL]
+get some rest![A]
+[X]
+
+# # SecretEnding1
+
+You did it! You made[NL]
+it to the castle![A][X]
+
+# # SecretEnding2
+
+Now, you got here too fast[NL]
+to have cleared any of the[NL]
+[ToggleRed]hidden objectives[ToggleRed], but...[A][X]
+
+# # SecretEnding3
+
+I guess I have no choice[NL]
+but to give you a [ToggleRed]perfect[NL]
+score.[ToggleRed][A]
+[X]
+
+# # SecretEnding4
+
+Besides, if you're seeing[NL]
+this, I'd bet that you've[NL]
+already beaten the map[NL]
+normally, anyway...[A]
+[X]
+
+# # SecretEnding5
+
+Thanks for playing![A]
+[X]
+
+# # EphidelSpawnText
+
+[OpenMidLeft][LoadFace][0x46][0x1]
+Ahhh![A][NL]
+After twenty years and[NL]
+being burned by a dragon,[A][NL]
+I'm finally free![NL]
+Time to conquer Magvel![A][X]
+
+# # ShowLArachel
+
+[OpenMidLeft][LoadFace][0x22][0x1]
+Oh no! A battle![A][NL]
+Now, wherever did I[NL]
+leave my staff...?[A]
+[X]
+
+# # GilliamSpawn
+
+[OpenMidLeft][LoadFace][0x5][0x1]
+A battle?[A][NL]
+Fear not, I will guard the[NL]
+castle gate with my life![A][X]
+
+# # TalkToGilliamText
+
+[OpenMidLeft][LoadFace][0x5][0x1]
+[OpenMidRight][LoadFace][0x2][0x1]
+Gilliam![A]
+[OpenMidLeft]
+Ah, Princess.[NL]
+Well met.[A]
+[OpenMidRight]
+Won't you let me in?[A]
+[OpenMidLeft]
+My apologies, Princess.[A][NL]
+I'm not to allow anyone[NL]
+into the castle while[A][NL]
+a battle of this level[NL]
+rages outside.[A]
+[OpenMidRight]
+I understand.[NL]
+Stay safe![A]
+[OpenMidLeft]
+And you as well.[A]
+[X]
+
+# # WhatToDo
+
+[OpenMidLeft][LoadFace][0x2][0x1]
+Such horrible odds...[A]
+[X]
+
+# # ReinforcementsArrive
+
+[OpenMidLeft][LoadFace][0x14][0x1]
+Eirika![NL]
+We have arrived![A]
+[X]
+
+# # RealMapStarts
+
+Somehow, Ephidel returned.[NL]
+He'll need to be stopped,[NL]
+somehow.[A]
+[X]
+
+# # RealMapStarts2
+
+Ephidel gains stat boosts[NL]
+for each surviving enemy[NL]
+on the map.[A]
+[X]
+
+# # RealMapStartsSkills
+
+Also, be warned that[NL]
+promoted foes have[NL]
+powerful [ToggleRed]skills[ToggleRed] to[NL]
+turn the tide of a[NL]
+fight.[A]
+[X]
+
+# # RealMapStarts3
+
+Use your resources and[NL]
+positioning to [ToggleRed]clear[NL]
+the map[ToggleRed] and save the[NL]
+world![A]
+[X]
+
+# # EirikaMatthew
+
+[OpenMidLeft][LoadFace][0x2][0x1]
+[OpenMidRight][LoadFace][0xC][0x1]
+[OpenMidLeft]
+Um...[A][NL]
+Excuse me, have we-[A]
+[OpenMidRight]
+Met?[A][NL]
+I'm afraid not, or at[NL]
+least I'd hope not.[A][NL]
+Being memorable isn't the[NL]
+best quality for a spy,[A][NL]
+after all.[A]
+[OpenMidLeft]
+Yes, but-[A]
+[OpenMidRight]
+Well, I'm off.[NL][A]
+Time is light, foes to[NL]
+smite and all.[A]
+[ClearFace]
+[OpenMidLeft]
+Wait there, you-[A]
+[X]
+
+# # SethMatthew
+
+[OpenMidLeft][LoadFace][0x4][0x1]
+[OpenMidRight][LoadFace][0xC][0x1]
+[OpenMidLeft]
+You... Wait![A][NL]
+I don't recognize you.[NL]
+You're not one of ours.[A][NL]
+[OpenMidRight]
+Whoa, easy there with the[NL]
+spear, good sir![A][NL]
+I'm just a humble thief[NL]
+in the prince's employ![A][NL]
+If you don't believe me,[NL]
+ask him yourself![A][NL]
+[OpenMidLeft]
+...Fine.[A][NL]
+Amidst all this mess, if[NL]
+you wanted to betray us,[A][NL]
+you've had plenty of[NL]
+opportunities.[A][NL]
+[OpenMidRight]
+I thank you for your[NL]
+generosity, sir knight.[A][NL]
+[X]
+
+# # MatthewSecretShop
+
+[OpenMidLeft][LoadFace][0xC][0x1]
+Look, I'll tell you this[NL]
+morsel of juicy gossip,[NL]
+as a peace offering.[A][NL]
+I hear that there's a[NL]
+[ToggleRed]secret shop[ToggleRed] on this map.[A][NL]
+Sounds like they have[NL]
+some rare stuff, too.[A][NL]
+No idea where it is,[NL]
+alas, other than being[A][NL]
+[ToggleRed]suspicious and out of the[NL]
+way.[ToggleRed][A][NL]
+[CloseSpeechSlow]
+One last thing.[A][NL]
+That Ephidel guy and[NL]
+I...[A] We go way back.[A][NL]
+So [ToggleRed]let me take a crack[NL]
+at him.[ToggleRed] Please?[A]
+[X]
+
+# # MatthewEphidel
+
+[OpenMidRight][LoadFace][0xC][0x1]
+Heya.[A]
+[ClearFace]
+[OpenMidLeft][LoadFace][0x46][0x1]
+You... I know you.[NL]
+You are from Elibe.[A][NL]
+[ClearFace]
+[OpenMidRight][LoadFace][0xC][0x1]
+The young master has been[NL]
+looking for you, you know.[A][NL]
+We all owe you for your[NL]
+hospitality on Valor.[A][NL]
+[ClearFace]
+[OpenMidLeft][LoadFace][0x46][0x1]
+Silence! If it weren't for[NL]
+Hector's meddling, my master's[A][NL]
+plan would have been perfect![A][NL]
+But now, I am here, in this[NL]
+land of Magvel![A][NL]
+Can't you feel it? The power[NL]
+of these [0x93]skills[0x94]?[A][NL]
+[ClearFace]
+[OpenMidRight][LoadFace][0xC][0x1]
+Yeah, well... I've picked up a[NL]
+skill or two as well.[A][NL]
+One I've been dying to use on[NL]
+you, actually.[A]
+[X]
+
+# # MatthewKillsEphidel
+
+[OpenMidLeft][LoadFace][0x46][0x1]
+What?[A][NL]
+[ClearFace]
+[OpenMidRight][LoadFace][0xC][0x1]
+Goodbye, Ephidel.[NL]
+Send her my regards.[A]
+[X]
+
+# # EphidelGeneric
+
+[OpenMidLeft][LoadFace][0x46][0x1]
+Be not afraid...[A][NL]
+You shall bear witness to a[NL]
+power that surpasses all![A]
+[X]
+
+# # EphidelEirika
+
+[OpenMidLeft][LoadFace][0x46][0x1]
+Ah, Princess.[NL]
+We meet at last.[A][NL]
+[ClearFace]
+[OpenMidRight][LoadFace][0x2][0x1]
+Who are you!?[A]
+[ClearFace]
+[OpenMidLeft][LoadFace][0x46][0x1]
+I am Ephidel.[A][NL]
+Pleased to make your[NL]
+acquaintance.[A]
+[ClearFace]
+[OpenMidRight][LoadFace][0x2][0x1]
+Your gaze...[A][NL]
+I can feel a burning hatred.[NL]
+But towards whom?[A]
+[ClearFace]
+[OpenMidLeft][LoadFace][0x46][0x1]
+Ah, nothing of the sort.[A][NL]
+Perhaps it is merely[NL]
+distaste for this land.[A][NL]
+[ClearFace]
+[OpenMidRight][LoadFace][0x2][0x1]
+Your blazing anger...[A][NL]
+It's not even directed at[NL]
+us![A][NL]
+I won't let your evil heart[NL]
+set the world aflame![A]
+[ClearFace]
+[OpenMidLeft][LoadFace][0x46][0x1]
+You and I...[A][NL]
+We're not a good match.[A]
+[X]
+
+# # EphidelEphraim
+
+[OpenMidRight][LoadFace][0x14][0x1]
+Ephidel? I've been[NL]
+waiting for this.[A]
+[ClearFace]
+[OpenMidLeft][LoadFace][0x46][0x1]
+Gallantly said.[A][NL]
+Of course, I know who[NL]
+you are.[A][NL]
+Heir to Renais, Prince[NL]
+Ephraim.[A]
+[ClearFace]
+[OpenMidRight][LoadFace][0x14][0x1]
+We've been getting reports[NL]
+of a man with golden eyes[A][NL]
+terrorizing our lands.[A][NL]
+That was you, I gather.[A][NL]
+All around Magvel, I've[NL]
+never met anyone like you.[A]
+[ClearFace]
+[OpenMidLeft][LoadFace][0x46][0x1]
+There are none like me[NL]
+in Magvel.[A][NL]
+[ClearFace]
+[OpenMidRight][LoadFace][0x14][0x1]
+Then I will send you back[NL]
+where you came, demon![A]
+[X]
+
+# # EphidelBeaten1
+
+Well done![NL]
+With Ephidel defeated,[NL]
+Magvel is safe from...[NL]
+well, whatever he was[NL]
+plotting.[A]
+[X]
+
+# # EphidelBeaten2
+
+All that said... [ToggleRed]aren't[NL]
+you forgetting something?[ToggleRed][A]
+[X]
+
+# # EphidelBeaten3
+
+Well, I'll give you until[NL]
+the end of the turn to[NL]
+try to remember.[A]
+[X]
+
+# # CongratsCastleVisitBossDead
+
+You remembered! Your goal[NL]
+was to [ToggleRed]reach the castle[NL]
+with Eirika![ToggleRed][A]
+[X]
+
+# # CongratsCastleVisitBossAlive1
+
+Oho.[A][NL]
+Well done.[A]
+[X]
+
+# # CongratsCastleVisitBossAlive2
+
+You realized that your[NL]
+objective was to [ToggleRed]end[NL]
+the map by reaching the[NL]
+castle[ToggleRed], not to fight the[NL]
+boss.[A]
+[X]
+
+# # EphidelDeathQuoteText
+
+[OpenMidLeft][LoadFace][0x46][0x1]
+Stop... You musn't...[A][NL]
+Lord Nergal! Lord Nergal![A][NL]
+Please! Not again! I won't-[NL]
+Gwaaaaahhhh![A]
+[X]
+
+# # CongratsRout
+
+Looks like you went above[NL]
+and beyond and [ToggleRed]routed the[NL]
+enemy.[ToggleRed][A]
+[X]
+
+# # CongratsBuffs
+
+Wow! You defeated Ephidel[NL]
+while [ToggleRed]he still had plenty[NL]
+of shared power![ToggleRed][A]
+[X]
+
+# # CongratsSecretShop
+
+Good work on sniffing[NL]
+out the [ToggleRed]secret shop[ToggleRed]![NL]
+I hope you bought[NL]
+something good![A]
+[X]
+
+# # CongratsMatthewEphidel
+
+You did as Matthew[NL]
+asked and [ToggleRed]let him[NL]
+fight Ephidel.[ToggleRed][A]
+[X]
+
+# # Forgot1
+
+Seems like you've[NL]
+forgotten... Oh well.[A]
+[X]
+
+# # Forgot2
+
+I'll have to dock your[NL]
+score a bit, but anyway...[A]
+[X]
+
+# # TallyUpStart
+
+Let's see what[NL]
+[ToggleRed]objectives[ToggleRed] you cleared!
+[A]
+[X]
+
+# # GilliamLeavesTalk
+
+[OpenMidLeft][LoadFace][0x5][0x1]
+It seems the battle[NL]
+has ended.[A]
+[X]
+
+# # Computing
+
+So, how did you do?[A]
+[X]
+
+# # DotDotDot
+
+...[A]
+[X]
+
+# # GreatScore
+
+Wow, I have almost[NL]
+no complaints![A]
+[X]
+
+# # GoodScore
+Good work![A]
+[X]
+
+# # MidScore
+You did alright,[NL]
+I guess.[A]
+[X]
+
+# # BadScore
+
+Well... at least[NL]
+you cleared the[NL]
+chapter![A]
+[X]
+
+# # WhatMissed
+
+As for something[NL]
+you missed...[A]
+[X]
+
+# # SuggestVisit
+
+Did you notice that[NL]
+the [ToggleRed]goal window[ToggleRed] never[NL]
+changed, even after[NL]
+the enemy army spawned?[A]
+[X]
+
+# # SuggestLTC1
+
+Well, the best battle is[NL]
+one not fought at all.[A]
+[X]
+
+# # SuggestLTC2
+
+Maybe we can end the map[NL]
+[ToggleRed]before Ephidel even[NL]
+arrives?[ToggleRed][A]
+[X]
+
+# # ThanksForPlaying
+
+Thanks for playing, or[NL]
+[ToggleRed]come challenge me again![ToggleRed][A]
+[X]
+
+# 0x0793
+
+Onward![X]
+
+# 0x0794
+
+March![X]
+
+# 0x07C5
+
+Attack![X]
+
+# 0x07BB
+
+Strike![X]
+
+# 0x07A7
+
+Softly with Grace[X]
+
+# 0x08FE SuspendDialogue
+
+[OpenLeft][LoadFace][0x64][0x1]
+[OpenLeft]Do you want to quit?
+[NL][Yes]
+[X]
+
+# 0x0B00 AegisDesc
+
+Moderate chance to halve[NL]
+incoming damage.[X]
+
+# # AirSuperiorityDesc
+
+Increases hit, avoid and[NL]
+crit in air-to-air combat.[X]
+
+# # NihilDesc
+
+Disables most enemy[NL]
+skills.[X]
+
+# # NoGuardDesc
+
+In combat, neither combatant[NL]
+can miss.[X]
+
+# # PerfectGuardDesc
+
+Small chance to negate[NL]
+all incoming damage.[X]
+
+# # PierceDesc
+
+Small chance to attack[NL]
+ignoring foe's defenses.[X]
+
+# # RecklessDesc
+
+Greatly increases critical[NL]
+hit for both unit and foe.[X]
+
+# # ShootDownDesc
+
+Greatly increases damage and[NL]
+hit rate against flying foes.[X]
+
+# # SmiteDesc
+
+Smite foes from the heavens[NL]
+when wielding [0x93]thunder[0x94] tomes.[X]
+
+# # TrampleDesc
+
+Slightly increase damage when[NL]
+attacking non-mounted foes.[X]
+
+# # CharmEirDesc
+
+Allies within two spaces have[NL]
+increased critical and avoid.[X]
+
+# # CharmEphDesc
+
+Increases critical and avoid[NL]
+per ally within two spaces.[X]
+
+# # AllForOneDesc
+
+Gains power from remaining[NL]
+red units.[X]
+
+# # RevengerDesc
+
+Significantly improves combat[NL]
+stats against a certain foe.[X]
+
+# # CovertDesc
+
+Doubles terrain bonuses.[X]
+
+# # AirRaidDesc
+
+Increases speed if foe is[NL]
+unable to enter unit's tile.[X]
+
+# # SlayerDesc
+
+Unit deals effective[NL]
+damageto monsters.[X]
+
+# 0x021A MatthewName
+
+Matthew[X]
+
+# 0x0276 MatthewDesc
+
+A cheery thief from faraway.[NL]
+His demeanor belies his skill.[X]
+
+# 0x0234 EphidelName
+
+Ephidel[X]
+
+# 0x028F EphidelDesc
+
+A mysterious figure[NL]
+with golden eyes.[X]
+
+# 0x033B NecromancerDesc
+
+A powerful sorceror calling[NL]
+upon magic from two realms.[X]
+
+# 0x024E BadGuyName
+
+Morph[X]
+
+# 0x024F BanditName
+
+Rude Guy[X]
+
+# 0x02AA BadGuyDesc
+
+A creature given life by[NL]
+supernatural powers.[X]
+
+# # BanditDesc
+
+Small fry. Not worth[NL]
+considering.[X]
+
+# 0x035D
+
+Hero Sword[X]
+
+# 0x036E
+
+Hero Lance[X]
+
+# 0x037E
+
+Hero Axe[X]
+
+# 0x0390
+
+Hero Bow[X]

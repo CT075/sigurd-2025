@@ -1,0 +1,683 @@
+#include EAstdlib.event
+#include ParseDefinitions.event
+
+// Thanks to Colorz and Contro for figuring out this trick!
+#define SetLabel(parentLabel) "LABEL (currentOffset - (parentLabel))"
+#define LabelDest(parentLabel, destLabel) "((destLabel) - (parentLabel))"
+
+#define ScrollText(id) "SVAL sB (-1); TUTORIALTEXTBOXSTART; TEXTSHOW (id); TEXTEND;"
+#define CursorFlash(c, time) "CURSOR_FLASHING c; STAL (time); REMOVE_CURSORS;"
+#define CursorFlash(c) "FlashCursor(c, 30)"
+
+PUSH
+// prologue events
+EventPointerTable(0x7,ChEvents)
+// prologue map
+EventPointerTable(0x4,ChMap)
+
+/*
+// alt map bgm
+ORG 0x8B08B2
+SHORT The_Princes_Despair
+SHORT The_Princes_Despair
+SHORT The_Princes_Despair
+*/
+
+// Victory bgm
+ORG 0x8B0916
+BYTE 0
+
+// goal window
+ORG 0x8B091A
+SHORT 0x01A2
+
+// Ignore attack AI
+ORG 0x5A8A24
+SHORT Gilliam 0
+POP
+
+#define CastleCoords [5,16]
+#define MageHouseCoords [15,12]
+#define SouthFort [10,18]
+
+#define EarlyWarningId 10
+#define MageHouseId 11
+#define MemberCardId 12
+#define GilliamTalkId 13
+#define LateVisitId 14
+#define MatthewTalkId 15
+#define MatthewSecretId 16
+#define EphidelArrivedId 17
+#define EphidelBossQuoteId 18
+#define BossDeadTextId 19
+#define EphidelEirikaQuoteId 20
+#define EphidelEphraimQuoteId 21
+
+#define VisitedSecretShopId 34
+#define MatthewFoughtEphidelId 35
+#define RoutedId 6
+
+#define StartBadGuy 0x8E
+#define BadGuy 0x80
+#define TheSniper 0x8F
+#define Ephidel Lyon_Ch17
+#define Matthew Colm
+
+#include REDAHelpers.event
+
+ALIGN 4
+ChMap:
+#incbin map.dmp
+
+ALIGN 4
+ChEvents:
+POIN TurnBasedEvents
+POIN CharacterBasedEvents
+POIN LocationBasedEvents
+POIN MiscBasedEvents
+POIN AltMiscEventsA AltMiscEventsB AltMiscEventsC
+POIN Tutorial
+POIN TrapData TrapData
+POIN PlayerUnits PlayerUnits
+POIN $0 $0 $0 $0 $0 $0
+POIN BeginningScene EndingScene
+
+TurnBasedEvents:
+TurnEventPlayer(0,LoadFlier,2)
+TurnEventPlayer(EphidelArrivedId,SpawnEnemies,4)
+TurnEventPlayer(0,SpawnReinforcements1,5)
+TurnEventPlayer(0,SpawnReinforcements2,6)
+TurnEventPlayer(0,EphidelAggro,8)
+DefeatBoss(DidNotVisit)
+END_MAIN
+
+CharacterBasedEvents:
+CharacterEvent(GilliamTalkId, TalkToGilliam, Eirika, Gilliam)
+CharacterEvent(MatthewTalkId, MatthewEirikaChat, Eirika, Matthew)
+CharacterEvent(MatthewTalkId, MatthewSethChat, Seth, Matthew)
+END_MAIN
+
+LocationBasedEvents:
+//House(MageHouseId, MageHouse, MageHouseCoords)
+House(MageHouseId, MageHouse, 15, 12)
+//Seize(0x3, DontSeizeBaka, CastleCoords)
+Seize(2, DontSeizeBaka, 5, 16)
+SecretShop(SecretShopContents,0,7)
+Armory(ArmoryContents,18,11)
+Vendor(VendorContents,19,11)
+END_MAIN
+
+MiscBasedEvents:
+AREA EarlyWarningId CheckEarlyWarning [5,16] [5,17]
+AREA MemberCardId GiveMemberCard [0,19] [0,19]
+AREA 3 LateVisit [5,16] [5,16]
+CauseGameOverIfLordDies
+AFEV MatthewSecretId MatthewSecretShopChat MatthewTalkId
+DefeatAll(GilliamLeaves)
+AFEV BossDeadTextId DidYouForget 2
+END_MAIN
+
+TrapData:
+END_MAIN
+
+#define PlayerUnit(char, cls, lvl) "UNIT char cls Eirika Level(lvl,Ally,0)"
+
+PlayerUnits:
+PlayerUnit(Eirika,EirikaMasterLord,1) [9,0] 0 0 1 C_8_2 [Rapier,Elixir] NoAI
+PlayerUnit(Seth,Paladin,10) [10,0] 0 0 1 C_6_5 [SilverLance,SteelSword] NoAI
+UNIT
+
+BaseEnemies:
+UNIT StartBadGuy Brigand 0 Level(18,Enemy,1) [13,3] 0 0 1 C_11_5 [IronAxe,Vulnerary] NoAI
+UNIT StartBadGuy Brigand 0 Level(15,Enemy,1) [13,3] 0 0 1 C_10_6 [IronAxe,Vulnerary] NoAI
+UNIT
+
+Flier:
+PlayerUnit(Vanessa,FalcoKnight,4) [0,7] 0 0 1 C_4_4 [SteelLance,SteelSword,Vulnerary] NoAI
+UNIT TheSniper Sniper 0 Level(5,Enemy,0) [0,11] 0 0 1 C_2_11 [Longbow] AttackInRangeAI
+UNIT
+
+Turn2BadGuys:
+UNIT BadGuy Warrior 0 Level(3,Enemy,1) [17,3] 0 0 0 0 [SilverAxe] NoAI
+UNIT BadGuy Fighter 0 Level(16,Enemy,1) [17,3] 0 0 1 C_16_2 [IronAxe] NoAI
+UNIT BadGuy Fighter 0 Level(18,Enemy,1) [17,3] 0 0 1 C_17_4 [SteelAxe] NoAI
+UNIT
+
+BoltingMage:
+PlayerUnit(LArachel,MageKnight_F,1) [15,12] 0 0 1 C_14_12 [Elfire,Bolting,Vulnerary] NoAI
+UNIT
+
+NonBoltingMage:
+PlayerUnit(LArachel,MageKnight_F,1) [15,12] 0 0 1 C_14_12 [Fimbulvetr,Physic,Vulnerary] NoAI
+UNIT
+
+GateGuard:
+UNIT Gilliam General Gilliam Level(10,NPC,0) CastleCoords 0 0 0 0 [SilverLance,Elixir] NeverMoveAI
+UNIT
+
+RightCavs:
+UNIT BadGuy GreatKnight Ephidel Level(6,Enemy,1) [19,15] 0 0 1 C_17_14 [SilverAxe,SteelLance] ChaseOnceApproachedAI
+UNIT BadGuy Cavalier Ephidel Level(16,Enemy,1) [19,16] 0 0 1 C_18_13 [SteelLance] ChaseOnceApproachedAI
+UNIT BadGuy Cavalier Ephidel Level(18,Enemy,1) [19,15] 0 0 1 C_18_15 [SteelSword] ChaseOnceApproachedAI
+UNIT
+
+MiddleInfantry:
+UNIT BadGuy Berserker Ephidel Level(3,Enemy,1) [14,11] 0 0 1 C_15_9 [KillerAxe] AttackInRangeAI
+UNIT BadGuy Brigand Ephidel Level(18,Enemy,1) [14,11] 0 0 1 C_13_9 [SteelAxe] AttackInRangeAI
+UNIT BadGuy Brigand Ephidel Level(18,Enemy,1) [14,11] 0 0 1 C_14_8 [HandAxe] AttackInRangeAI
+UNIT BadGuy Brigand Ephidel Level(19,Enemy,1) [14,11] 0 0 1 C_16_10 [SteelAxe] AttackInRangeAI
+UNIT
+
+TopLeftWyverns:
+UNIT BadGuy WyvernKnight Ephidel Level(4,Enemy,1) [0,3] 0 0 1 C_4_5 [SilverLance] NoAI
+UNIT BadGuy WyvernKnight Ephidel Level(3,Enemy,1) [0,3] 0 0 1 C_4_7 [Spear] NoAI
+UNIT BadGuy WyvernRider Ephidel Level(19,Enemy,1) [0,3] 0 0 1 C_3_4 [SteelLance] NoAI
+UNIT BadGuy WyvernRider Ephidel Level(17,Enemy,1) [0,4] 0 0 1 C_3_6 [Javelin] NoAI
+UNIT
+
+TopLeftSwords:
+UNIT BadGuy Hero Ephidel Level(5,Enemy,1) [5,0] 0 0 1 C_7_5 [BraveSword] NoAI
+UNIT BadGuy Mercenary Ephidel Level(16,Enemy,1) [5,0] 0 0 1 C_7_4 [KillingEdge] NoAI
+UNIT BadGuy Mercenary Ephidel Level(18,Enemy,1) [5,0] 0 0 1 C_6_5 [SteelSword] NoAI
+UNIT
+
+EphidelGroup:
+UNIT Ephidel Necromancer 0 Level(20,Enemy,0) [19,0] 0 0 1 C_17_3 [Naglfar] [0xC, 0x3, 0, 0]
+UNIT
+
+EphraimReinforcements:
+PlayerUnit(Ephraim,EphraimMasterLord,5) SouthFort 0 0 1 C_13_12 [Reginleif,Spear,Elixir] NoAI
+PlayerUnit(Innes,Sniper,4) SouthFort 0 0 1 C_11_14 [SilverBow,Elixir] NoAI
+PlayerUnit(Amelia,General,1) SouthFort 0 0 1 C_14_13 [SteelAxe,Javelin,SteelLance] NoAI
+PlayerUnit(Matthew,Rogue,6) SouthFort 0 0 1 C_12_15 [KillingEdge,Vulnerary] NoAI
+PlayerUnit(Ross,Berserker,1) SouthFort 0 0 1 C_12_13 [KillerAxe] NoAI
+PlayerUnit(Moulder,Bishop,7) SouthFort 0 0 1 C_13_14 [Divine,Physic,Mend] NoAI
+UNIT
+
+#define IgnoreGilliam [0x18,0x0]
+SouthWestWyverns:
+UNIT BadGuy WyvernKnight Ephidel Level(4,Enemy,1) [16,19] 0 0 1 C_8_16 [SilverLance] IgnoreGilliam
+UNIT BadGuy WyvernKnight Ephidel Level(3,Enemy,1) [16,19] 0 0 1 C_9_17 [Spear] IgnoreGilliam
+UNIT
+
+SouthEastGuys:
+UNIT BadGuy Warrior Ephidel Level(4,Enemy,1) [0,18] 0 0 1 C_9_17 [SilverAxe] IgnoreGilliam
+UNIT BadGuy Warrior Ephidel Level(3,Enemy,1) [0,18] 0 0 1 C_10_15 [Tomahawk] IgnoreGilliam
+UNIT BadGuy Warrior Ephidel Level(3,Enemy,1) [0,18] 0 0 1 C_10_15 [SteelAxe, SteelBow] IgnoreGilliam
+UNIT
+
+SecretShopContents:
+SHLI BraveSword BraveLance BraveAxe BraveBow Sleep Berserk Elixir
+
+ArmoryContents:
+SHLI SteelSword SteelLance Javelin SteelAxe HandAxe SteelBow
+
+VendorContents:
+SHLI Elfire Shine Mend Vulnerary
+
+ALIGN 4
+
+BeginningScene:
+LOAD1 1 PlayerUnits
+ENUN
+CursorFlash(Eirika)
+Text(Woodland, OpeningText)
+LOAD1 1 BaseEnemies
+ENUN
+// We need to do this due to a bug in ColorzCore macro parsing that doesn't respect
+// [bracketed,coordinates] as a single parameter.
+#define hlcoords [11,5]
+CursorFlash(hlcoords)
+#undef hlcoords
+Text(Woodland, OpeningBandits)
+ScrollText(ExplainHidden)
+ScrollText(ExplainGrade)
+ScrollText(ExplainMutuallyExclusive)
+CAMERA CastleCoords
+CursorFlash(CastleCoords)
+STAL 30
+CursorFlash(CastleCoords)
+ScrollText(ExplainGoToCastle)
+ScrollText(ExplainSeize)
+SVAL s3 (-15000)
+GIVETOSLOT3
+NoFade
+ENDA
+
+LoadFlier:
+LOAD1 1 Flier
+ENUN
+CAMERA Vanessa
+CursorFlash(Vanessa)
+Text(0x0905)
+EVBIT_T 0x9
+LOAD1 1 Turn2BadGuys
+ENUN
+EVBIT_F 0x9
+NoFade
+ENDA
+
+SpawnReinforcements1:
+EVBIT_T 0x9
+LOAD1 1 TopLeftSwords
+ENUN
+EVBIT_F 0x9
+NoFade
+ENDA
+
+SpawnReinforcements2:
+EVBIT_T 0x9
+LOAD1 1 SouthEastGuys
+ENUN
+LOAD1 1 SouthWestWyverns
+ENUN
+EVBIT_F 0x9
+NoFade
+ENDA
+
+EphidelAggro:
+SVAL s1 0x06000100
+CHAI Ephidel
+NoFade
+ENDA
+
+MageHouse: {
+  CHECK_TURNS
+  SVAL s1 5
+  BLT LabelDest(MageHouse,TooLate) s1 sC
+  CHECK_ACTIVEID Eirika
+  BEQ LabelDest(MageHouse,NotEirikaEarly) sC s0
+  Text(HouseBG, EarlyMageEirika)
+  GOTO LabelDest(MageHouse,LoadBoltingMage)
+
+  NotEirikaEarly:
+  SetLabel(MageHouse)
+  Text(HouseBG, EarlyMageGeneric)
+
+  LoadBoltingMage:
+  SetLabel(MageHouse)
+  LOAD1 1 BoltingMage
+  ENUN
+  GOTO LabelDest(MageHouse,Done)
+
+  TooLate:
+  SetLabel(MageHouse)
+  CHECK_ACTIVEID Eirika
+  BEQ LabelDest(MageHouse,NotEirikaLate) sC s0
+  Text(HouseBG, LateMageEirika)
+  GOTO LabelDest(MageHouse,NonBoltingMage)
+
+  NotEirikaLate:
+  SetLabel(MageHouse)
+  Text(HouseBG, LateMageGeneric)
+
+  LoadNonBoltingMage:
+  SetLabel(MageHouse)
+  LOAD1 1 NonBoltingMage
+  ENUN
+  CursorFlash(LArachel)
+  Text(SorryLostBolting)
+
+  Done:
+  SetLabel(MageHouse)
+  NoFade
+  ENDA
+}
+
+CheckEarlyWarning: {
+  CHECK_INAREA Eirika [5,16] [1,1]
+  BEQ LabelDest(CheckEarlyWarning,NotThere) sC s0
+  CALL SecretEnding
+  GOTO LabelDest(CheckEarlyWarning,Done)
+
+  NotThere:
+  SetLabel(CheckEarlyWarning)
+  CHECK_TURNS
+  SVAL s1 4
+  BLT LabelDest(CheckEarlyWarning,Done) s1 sC
+  ENUF EarlyWarningId
+
+  Done:
+  SetLabel(CheckEarlyWarning)
+  NoFade
+  ENDA
+}
+
+SpawnEnemies: {
+  CHECK_INAREA Eirika CastleCoords [1,1]
+  BEQ LabelDest(SpawnEnemies,Failed) sC s0
+  CALL SecretEnding
+  GOTO LabelDest(SpawnEnemies,Done)
+
+  Failed:
+  SetLabel(SpawnEnemies)
+  EVBIT_T 0x9
+  LOAD1 1 EphidelGroup
+  ENUT EarlyWarningId
+  ENUF RoutedId
+  ENUN
+  CAMERA Ephidel
+  CursorFlash(Ephidel)
+  Text(EphidelSpawnText)
+  LOAD1 1 RightCavs
+  ENUN
+  LOAD1 1 TopLeftWyverns
+  ENUN
+  LOAD1 1 MiddleInfantry
+  ENUN
+  CHECK_EVENTID MageHouseId
+  BNE LabelDest(SpawnEnemies,LArachelEarly) sC s0
+  CAMERA MageHouseCoords
+  CursorFlash(MageHouseCoords)
+  Text(HouseBG, ShowLArachel)
+
+  LArachelEarly:
+  SetLabel(SpawnEnemies)
+  LOAD1 1 GateGuard
+  ENUN
+  CursorFlash(Gilliam)
+  Text(GilliamSpawn)
+  EVBIT_F 0x9
+  CAMERA Eirika
+  CursorFlash(Eirika)
+  Text(WhatToDo)
+  CAMERA SouthFort
+  LOAD1 1 EphraimReinforcements
+  CursorFlash(Ephraim)
+  Text(ReinforcementsArrive)
+  ScrollText(RealMapStarts)
+  CAMERA Ephidel
+  CursorFlash(Ephidel)
+  ScrollText(RealMapStarts2)
+#define Highlight(coords) "CAMERA c; CursorFlash(c)"
+#define c [17,14]
+  Highlight(c)
+#undef c
+#define c [15,9]
+  Highlight(c)
+#undef c
+#define c [4,5]
+  Highlight(c)
+#undef c
+#define c [4,7]
+  Highlight(c)
+#undef c
+  ScrollText(RealMapStartsSkills)
+  ScrollText(RealMapStarts3)
+
+  Done:
+  SetLabel(SpawnEnemies)
+  NoFade
+  ENDA
+}
+
+SecretEnding: {
+  Text(SecretEndingDialogue)
+  ScrollText(SecretEnding1)
+  ScrollText(SecretEnding2)
+  ScrollText(SecretEnding3)
+  ScrollText(SecretEnding4)
+  ScrollText(SecretEnding5)
+  CALL EndingScene
+  ENDA
+}
+
+EndingScene: {
+  GOTO_TITLE
+  ENDA
+}
+
+DontSeizeBaka: {
+  Text(DontSeize1)
+  ScrollText(DontSeize2)
+  ScrollText(DontSeize3)
+  ScrollText(DontSeize4)
+  ScrollText(DontSeize5)
+  ScrollText(DontSeize6)
+  ScrollText(DontSeize7)
+  ScrollText(DontSeize8)
+  ENUT 3
+  GameOver
+  NoFade
+  ENDA
+}
+
+GiveMemberCard: {
+  Text(GiveMemberCardText)
+  SVAL s3 MemberCard
+  GIVEITEMTO -1
+  NoFade
+  ENDA
+}
+
+TalkToGilliam: {
+  Text(TalkToGilliamText)
+  NoFade
+  ENDA
+}
+
+MatthewEirikaChat: {
+  Text(EirikaMatthew)
+  NoFade
+  ENDA
+}
+
+MatthewSethChat: {
+  Text(SethMatthew)
+  NoFade
+  ENDA
+}
+
+MatthewSecretShopChat: {
+  Text(MatthewSecretShop)
+  NoFade
+  ENDA
+}
+
+DidNotVisit: {
+  ScrollText(Forgot1)
+  SVAL s1 0
+  CALL ComputeScore
+  ENUF 4
+  NoFade
+  ENDA
+}
+
+LateVisit: {
+  CHECK_ACTIVEID Eirika
+  BNE LabelDest(LateVisit, Real) sC s0
+  ENUF 3
+  GOTO LabelDest(LateVisit, Done)
+
+  Real:
+  SetLabel(LateVisit)
+  ENUT LateVisitId
+  CHECK_EVENTID 2
+  BNE LabelDest(LateVisit,EphidelDead) sC s0
+  ScrollText(CongratsCastleVisitBossAlive1)
+  ScrollText(CongratsCastleVisitBossAlive2)
+  SVAL s1 8
+  CALL ComputeScore
+  GOTO LabelDest(LateVisit,Done)
+
+  EphidelDead:
+  SetLabel(LateVisit)
+  ScrollText(CongratsCastleVisitBossDead)
+  SVAL s1 5
+  CALL ComputeScore
+
+  Done:
+  SetLabel(LateVisit)
+  NoFade
+  ENDA
+}
+
+ComputeScore: {
+  ScrollText(TallyUpStart)
+
+  // Did we rout?
+  CHECK_EVENTID RoutedId
+  BEQ LabelDest(ComputeScore, PostRout) sC s0
+  SVAL s2 3
+  SADD s1 s1 s2
+  SVAL s3 1
+  ScrollText(CongratsRout)
+
+  PostRout:
+  SetLabel(ComputeScore)
+
+  // Did Matthew fight Ephidel?
+  CHECK_EVENTID MatthewFoughtEphidelId
+  BEQ LabelDest(ComputeScore,PostMatthew) sC s0
+  SVAL s2 2
+  SADD s1 s1 s2
+  SVAL s3 1
+  ScrollText(CongratsMatthewEphidel)
+
+  PostMatthew:
+  SetLabel(ComputeScore)
+
+  // Did you find the secret shop?
+  CHECK_EVENTID VisitedSecretShopId
+  BEQ LabelDest(ComputeScore,PostSecretShop) sC s0
+  SVAL s2 3
+  SADD s1 s1 s2
+  SVAL s3 1
+  ScrollText(CongratsSecretShop)
+
+  PostSecretShop:
+  SetLabel(ComputeScore)
+
+  // How many enemies were alive when you defeated Ephidel?
+  CHECK_EVENTID 2
+  BEQ LabelDest(ComputeScore,PostBuffCount) sC s0
+  CHECK_ENEMIES
+  SVAL s2 10
+  BGT LabelDest(ComputeScore,PostBuffCount) s2 sC
+  SVAL s2 5
+  SADD s1 s1 s2
+  SVAL s3 1
+  ScrollText(CongratsBuffs)
+
+  PostBuffCount:
+  SetLabel(ComputeScore)
+  BNE LabelDest(ComputeScore, AtLeastOne) s3 s0
+  ScrollText(DotDotDot)
+  GOTO LabelDest(ComputeScore, Done)
+
+  AtLeastOne:
+  SetLabel(ComputeScore)
+  ScrollText(Computing)
+
+  Done:
+  SetLabel(ComputeScore)
+  CALL TallyUp
+  NoFade
+  ENDA
+}
+
+TallyUp: {
+  SVAL s2 11
+  BGT LabelDest(TallyUp, lt11) s2 s1
+  ScrollText(GreatScore)
+  GOTO LabelDest(TallyUp, ReportDone)
+
+  lt11:
+  SetLabel(TallyUp)
+  SVAL s2 8
+  BGT LabelDest(TallyUp, lt8) s2 s1
+  ScrollText(GoodScore)
+  GOTO LabelDest(TallyUp, ReportDone)
+
+  lt8:
+  SetLabel(TallyUp)
+  SVAL s2 5
+  BGT LabelDest(TallyUp, lt5) s2 s1
+  ScrollText(MidScore)
+  GOTO LabelDest(TallyUp, ReportDone)
+
+  lt5:
+  SetLabel(TallyUp)
+  ScrollText(BadScore)
+
+  ReportDone:
+  SetLabel(TallyUp)
+  ScrollText(WhatMissed)
+  CHECK_EVENTID LateVisitId
+  BNE LabelDest(TallyUp, Visited) sC s0
+  ScrollText(SuggestVisit)
+  GOTO LabelDest(TallyUp, Done)
+
+  Visited:
+  SetLabel(TallyUp)
+  ScrollText(SuggestLTC1)
+  ScrollText(SuggestLTC2)
+
+  Done:
+  SetLabel(TallyUp)
+  ScrollText(ThanksForPlaying)
+  CALL EndingScene
+  NoFade
+  ENDA
+}
+
+GilliamLeaves:
+CHECK_EVENTID EphidelArrivedId
+BEQ 1 sC s0
+CAMERA Gilliam
+CursorFlash(Gilliam)
+Text(GilliamLeavesTalk)
+REMOVEUNIT Gilliam
+LABEL 1
+NoFade
+ENDA
+
+EphidelBossQuoteGeneric: {
+  //ENUT 4
+  Text(EphidelGeneric)
+  NoFade
+  ENDA
+}
+
+EphidelEirikaBossQuote: {
+  NoFade
+  ENDA
+}
+
+EphidelEphraimBossQuote: {
+  NoFade
+  ENDA
+}
+
+EphidelMatthewQuoteEvent: {
+  //ENUT 4
+  Text(MatthewEphidel)
+  NoFade
+  ENDA
+}
+
+EphidelDeathQuote: {
+  CHECK_ACTIVEID Matthew
+  BEQ LabelDest(EphidelDeathQuote, NotMatthew) sC s0
+  Text(MatthewKillsEphidel)
+  GOTO LabelDest(EphidelDeathQuote, Done)
+
+  NotMatthew:
+  SetLabel(EphidelDeathQuote)
+  Text(EphidelDeathQuoteText)
+
+  Done:
+  SetLabel(EphidelDeathQuote)
+  NoFade
+  ENDA
+}
+
+DidYouForget: {
+  ScrollText(EphidelBeaten1)
+  ScrollText(EphidelBeaten2)
+  ScrollText(EphidelBeaten3)
+  NoFade
+  ENDA
+}
+
+ALIGN 4
