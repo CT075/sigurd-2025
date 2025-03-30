@@ -23,15 +23,13 @@ their original licenses:
 - Many internal engine hacks taken or adapted from the [fe8-archipelago](https://github.com/CT075/fe8-archipelago) project.
 - Project template initially forked from MysticOCE's
   [EasyBuildfile](https://github.com/MysticOCE/EasyBuildfile)
-
-In addition, the design and implementation of this project's "microskillsystem"
-were non-trivially influenced by the FE8 Skill System, though all actual code
-therein is original.
+- [ColorzCore](https://github.com/FireEmblemUniverse/ColorzCore/tree) by
+  CrazyColorz5 and StanHash, included under the GPL. A copy of this tool is
+  vendored for convenience, but remains under [its original license](bin/ColorzCore/LICENSE).
+  Note that ColorzCore is a build tool only; the source of this project
+  incorporates no GPL material.
 
 ### Artistic assets
 
 - FE1 "Onward" initial arrangement by me, greatly improved by Alusq
-- FE3 "March" by [Sme](https://github.com/sme23) (listed as F2U)
 - FE4 "AllyAttack" by pandan (listed as F2U)
-- Thanks to 2WB for assistance with the Ephidel minimug
-- Thanks to SgtSmilies for all skill icons, used with permission

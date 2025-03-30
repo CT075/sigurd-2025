@@ -3,7 +3,11 @@ BASEROM := fe8.gba
 TARGET := celica.gba
 
 EVENT_MAIN := main.event
-EAFLAGS := -werr -output:../$(TARGET) -input:../$(EVENT_MAIN) --nocash-sym
+EAFLAGS := -werr -output:$(TARGET) -input:$(EVENT_MAIN) --nocash-sym \
+					 -raws:'$(EA_STD_LIB_DIR)/Language Raws' \
+					 -I:'$(EA_STD_LIB_DIR)/EA Standard Library' \
+					 -I:'$(EA_STD_LIB_DIR)/Extensions' \
+					 -I:'$(EA_STD_LIB_DIR)'
 
 RAM_STRUCTURES_H := include/ram_structures.h
 
@@ -64,10 +68,8 @@ $(BASEROM):
 
 # CR cam: split out the postprocess step somehow
 $(TARGET) $(SYMBOLS): $(BASEROM) $(COLORZCORE) $(EVENTS) $(ASSETS) verify_allocations
-	cd $(BUILD_DIR) && \
-		cp ../$(BASEROM) ../$(TARGET) && \
-		./ColorzCore A FE8 $(EAFLAGS) \
-	|| (rm -f ../$(TARGET) ../$(SYMBOLS) && false)
+	cp ../$(BASEROM) ../$(TARGET)
+	$(COLORZCORE) A FE8 $(EAFLAGS) || (rm -f $(TARGET) $(SYMBOLS) && false)
 
 CLEAN := $(CLEAN) $(BUILD_DIR)
 
