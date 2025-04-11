@@ -1,5 +1,4 @@
-
-import six, tmx, sys, os, re, lzss, glob
+import tmx, sys, os, re, glob
 import argparse
 
 def showExceptionAndExit(exc_type, exc_value, tb):
