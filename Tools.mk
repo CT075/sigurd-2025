@@ -11,7 +11,7 @@ LYN := $(LYN_DIR)/lyn
 # everything into the root of the build dir.
 COLORZCORE_DIR := $(VENDOR_BIN)/ColorzCore/ColorzCore
 COLORZCORE := $(COLORZCORE_DIR)/ColorzCore$(EXE)
-COLORZCORE := $(BUILD_DIR)/ColorzCore$(EXE)
+COLORZCORE := ColorzCore$(EXE)
 EA_STD_LIB_DIR := $(VENDOR_DIR)/EAStandardLibrary
 
 $(LYN_DIR)/Makefile:
@@ -27,29 +27,18 @@ $(PARSEFILE): $(PARSEFILE_DIR)/ParseFile.hs $(PARSEFILE_DIR)/FlagUtilities.hs \
 		$(PARSEFILE_DIR)/GBAUtilities.hs $(PARSEFILE_DIR)/FEParser.hs
 	ghc $< -i$(PARSEFILE_DIR) -o $@
 
-PNG2DMP_DIR := $(VENDOR_BIN)/Png2Dmp
-PNG2DMP := $(PNG2DMP_DIR)/Png2Dmp
+FORMATTING_DIR := $(BIN_DIR)/cam-formatting-suite
 
-# XXX: We should properly be checking every .hs file here, but this is
-# vendored, so they're not likely to change often enough.
-$(PNG2DMP): $(PNG2DMP_DIR)/Png2Dmp.hs $(PNG2DMP_DIR)/Png2Dmp.cabal
-	cd $(PNG2DMP_DIR) && \
-		cabal build && \
-		cp $(shell cd $(PNG2DMP_DIR) && cabal list-bin Png2Dmp) Png2Dmp
+TILEMAGE := $(FORMATTING_DIR)/target/release/tilemage-bin
+MAR2DMP := $(FORMATTING_DIR)/target/release/mar2dmp
+STRUCT_MUNGER := $(FORMATTING_DIR)/target/release/struct_munger
 
-MAR2DMP_DIR := $(BIN_DIR)/cam-formatting-suite
-MAR2DMP := $(MAR2DMP_DIR)/target/release/mar2dmp
+FORMATTING_TOOLS := $(MAR2DMP) $(STRUCT_MUNGER) $(TILEMAGE)
 
-.PHONY: $(MAR2DMP)
-$(MAR2DMP):
-	cd $(MAR2DMP_DIR) && cargo build --profile release
+.PHONY: $(FORMATTING_TOOLS)
 
-STRUCT_MUNGER_DIR := $(BIN_DIR)/cam-formatting-suite
-STRUCT_MUNGER := $(STRUCT_MUNGER_DIR)/target/release/struct_munger
-
-.PHONY: $(STRUCT_MUNGER)
-$(STRUCT_MUNGER):
-	cd $(STRUCT_MUNGER_DIR) && cargo build --profile release
+$(FORMATTING_TOOLS) &:
+	cd $(FORMATTING_DIR) && cargo build --profile release
 
 TEXT_PROCESS_CLASSIC := $(VENDOR_BIN)/text-process-classic.py
 

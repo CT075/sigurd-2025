@@ -6,7 +6,7 @@ import contextlib
 import functools
 
 
-def main(d, png2dmp, inline, out):
+def main(d, tilemage, inline, out):
     p = functools.partial(print, file=out)
 
     p("// THIS FILE IS GENERATED")
@@ -19,7 +19,9 @@ def main(d, png2dmp, inline, out):
         match mimetypes.guess_type(file):
             case ("image/png", _):
                 output = fname + ".dmp"
-                subprocess.run([png2dmp, file, "-o", os.path.join(d, output)])
+                subprocess.run(
+                    [tilemage, "convert", file, "-o", os.path.join(d, output)]
+                )
                 if inline:
                     p(f"ORG ItemIconGraphicOffs+(128*{name}Icon)")
                 else:
@@ -40,7 +42,7 @@ if __name__ == "__main__":
 
     parser.add_argument("dir")
     parser.add_argument("--output", required=False)
-    parser.add_argument("--png2dmp", required=True)
+    parser.add_argument("--tilemage", required=True)
     parser.add_argument("--inline", action="store_true")
 
     args = parser.parse_args()
@@ -48,6 +50,6 @@ if __name__ == "__main__":
     d = args.dir if args.dir else os.getcwd()
 
     with (
-        open(args.output, "w") if args.output else contextlib.nullcontext(sys.stdout)
+        open(args.output, "w") if args.output else contextlib.nullcontext(sys.stdout)  # type: ignore
     ) as out:
-        main(d, args.png2dmp, args.inline, out)
+        main(d, args.tilemage, args.inline, out)

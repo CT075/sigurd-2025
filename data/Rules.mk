@@ -20,8 +20,8 @@ include $(dir)/Rules.mk
 dir := $(d)/miscgfx
 include $(dir)/Rules.mk
 
-%.png.dmp: %.png $(PNG2DMP)
-	$(PNG2DMP) $< -o $@ --lz77
+%.png.dmp: %.png $(TILEMAGE)
+	$(TILEMAGE) convert $< -o $@ --lz77
 
 EVENTS_$(d) := $(d)/main.event
 
