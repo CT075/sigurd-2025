@@ -14,7 +14,7 @@ their original licenses:
   [nat5](https://github.com/StanHash/)
 - Inline GenerateBestMovementScript by [7743](https://github.com/FEBuilderGBA/FEBuilderGBA)
 - [portraits2dmp.py](https://feuniverse.us/t/the-portrait-formatter-no-one-was-asking-for/13910)
-  by MintX
+  by [MintX](https://feuniverse.us/u/mintx/summary)
 - [ParseFile and Png2Dmp](https://github.com/FireEmblemUniverse/EAFormattingSuite) by [CrazyColorz5](https://github.com/Crazycolorz5)
 - [SkipHuffmanDecompression](https://github.com/ZaneAvernathy/Rewrite) by [Zane Avernathy](https://github.com/ZaneAvernathy)
 - FE8 Essential Fixes by the [FE8 Skill System](https://github.com/FireEmblemUniverse/SkillSystem_FE8/) team and contributors
@@ -24,7 +24,7 @@ their original licenses:
 - Project template initially forked from [MysticOCE's](https://github.com/MysticOCE)
   [EasyBuildfile](https://github.com/MysticOCE/EasyBuildfile)
 - [ColorzCore](https://github.com/FireEmblemUniverse/ColorzCore/tree) by
-  [CrazyColorz5](https://github.com/CrazyColorz5) and nat5, included under the GPL. A copy of this tool is
+  CrazyColorz5 and nat5, included under the GPL. A copy of this tool is
   vendored for convenience, but remains under [its original license](bin/ColorzCore/LICENSE).
   Note that ColorzCore is a build tool only; the source of this project
   incorporates no GPL material.
