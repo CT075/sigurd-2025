@@ -50,3 +50,4 @@ _build
 # misc
 Template.Rules.mk
 initskill.py
+chapters/TheChapter/map.event

@@ -28,7 +28,6 @@ their original licenses:
   vendored for convenience, but remains under [its original license](bin/ColorzCore/LICENSE).
   Note that ColorzCore is a build tool only; the source of this project
   incorporates no GPL material.
-- [tmx2ea](https://feuniverse.us/t/tmx2ea-v2-0-released-insert-tiled-maps-using-event-assembler/1830) modified from circleseverywhere
 
 ### Artistic assets
 
