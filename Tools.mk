@@ -10,8 +10,7 @@ LYN := $(LYN_DIR)/lyn
 # folder (it doesn't handle the `-raws` flag properly), so we simply copy
 # everything into the root of the build dir.
 COLORZCORE_DIR := $(VENDOR_BIN)/ColorzCore/ColorzCore
-COLORZCORE := $(COLORZCORE_DIR)/ColorzCore$(EXE)
-COLORZCORE := ColorzCore$(EXE)
+COLORZCORE := $(BUILD_DIR)/ColorzCore$(EXE)
 EA_STD_LIB_DIR := $(VENDOR_DIR)/EAStandardLibrary
 
 $(LYN_DIR)/Makefile:
@@ -26,6 +25,8 @@ PARSEFILE := $(BUILD_DIR)/ParseFile
 $(PARSEFILE): $(PARSEFILE_DIR)/ParseFile.hs $(PARSEFILE_DIR)/FlagUtilities.hs \
 		$(PARSEFILE_DIR)/GBAUtilities.hs $(PARSEFILE_DIR)/FEParser.hs
 	ghc $< -i$(PARSEFILE_DIR) -o $@
+
+TMX2EA := $(BIN_DIR)/tmx2ea.py
 
 FORMATTING_DIR := $(BIN_DIR)/cam-formatting-suite
 
@@ -44,14 +45,11 @@ TEXT_PROCESS_CLASSIC := $(VENDOR_BIN)/text-process-classic.py
 
 MAKE_ICON_INSTALLER := $(BIN_DIR)/make_icon_installer.py
 
-.PHONY: ColorzCore
-ColorzCore: $(COLORZCORE)
-
 $(COLORZCORE):
+	dotnet publish -o $(BUILD_DIR) $(COLORZCORE_DIR)/ColorzCore.csproj
 
 .PHONY: tools
 tools: $(LYN) $(COLORZCORE)
-	dotnet publish -o $(BUILD_DIR) $(COLORZCORE_DIR)/ColorzCore/ColorzCore.csproj
 
 .PHONY: clean-tools
 clean-tools:
