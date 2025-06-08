@@ -32,6 +32,9 @@ include $(dir)/Rules.mk
 dir := $(d)/forceAnimsOn
 include $(dir)/Rules.mk
 
+dir := $(d)/UnitActionMenuLib
+include $(dir)/Rules.mk
+
 EVENTS_$(d) := $(d)/main.event
 
 EVENTS := $(EVENTS) $(EVENTS_$(d))

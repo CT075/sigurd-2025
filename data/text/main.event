@@ -453,6 +453,18 @@ __TEXTPROCESS390:
 #incbin ".TextEntries/alltext390.fetxt.dmp"
 setText($390, __TEXTPROCESS390)
 
+__TEXTPROCESS391:
+#incbin ".TextEntries/alltext391.fetxt.dmp"
+setText($391, __TEXTPROCESS391)
+
+__TEXTPROCESS392:
+#incbin ".TextEntries/alltext392.fetxt.dmp"
+setText($392, __TEXTPROCESS392)
+
+__TEXTPROCESS393:
+#incbin ".TextEntries/alltext393.fetxt.dmp"
+setText($393, __TEXTPROCESS393)
+
 }
 
 #endif // TEXT_INSTALLER_ALLTEXT

@@ -1,0 +1,12 @@
+#include EAstdlib.event
+#include UnitActionMenuLib.event
+
+#include unitMenu.lyn.event
+
+ALIGN 4
+EirikaTalk:
+Text(0x393)
+NoFade
+ENDA
+
+SetUnitActionMenuItems(newUnitActionItems)

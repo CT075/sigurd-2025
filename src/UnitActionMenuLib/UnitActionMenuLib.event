@@ -1,0 +1,53 @@
+#ifndef UNIT_ACTION_MENU_LIB_EVENT
+#define UNIT_ACTION_MENU_LIB_EVENT
+
+#include core/UnitActionMenuLib.lyn.event
+
+/*
+struct MenuItemDef
+{
+    const char* name;
+
+    u16 nameMsgId, helpMsgId;
+    u8 color, overrideId;
+
+    u8(*isAvailable)(const struct MenuItemDef*, int number);
+
+    int(*onDraw)(struct MenuProc*, struct MenuItemProc*);
+
+    u8(*onSelected)(struct MenuProc*, struct MenuItemProc*);
+    u8(*onIdle)(struct MenuProc*, struct MenuItemProc*);
+
+    int(*onSwitchIn)(struct MenuProc*, struct MenuItemProc*);
+    int(*onSwitchOut)(struct MenuProc*, struct MenuItemProc*);
+};
+*/
+
+#define MenuItem(debugNamePtr, name, help, color, override, usable, draw, activate, idle, switchIn, switchOut) \
+  POIN (debugNamePtr); \
+  SHORT (name); \
+  SHORT (help); \
+  BYTE (color); \
+  BYTE (override); \
+  ALIGN 4; \
+  POIN (usable); \
+  POIN (draw); \
+  POIN (activate); \
+  POIN (idle); \
+  POIN (switchIn); \
+  POIN (switchOut);
+
+#define MenuItem(name, help, color, usable, activate) \
+  MenuItem(0, (name), (help), (color), 0, (usable), 0, (activate), 0, 0, 0)
+
+#define MenuItemEnd WORD 0 0 0 0 0 0 0 0 0
+
+#define G_UNIT_ACTION_MENU_ITEMS_PTR 0x59D1F8
+
+#define SetUnitActionMenuItems(ptr) \
+  PUSH; \
+  ORG G_UNIT_ACTION_MENU_ITEMS_PTR; \
+  POIN ptr; \
+  POP
+
+#endif // UNIT_ACTION_MENU_LIB_EVENT

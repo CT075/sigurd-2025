@@ -33,6 +33,7 @@ FORMATTING_DIR := $(BIN_DIR)/cam-formatting-suite
 TILEMAGE := $(FORMATTING_DIR)/target/release/tilemage-bin
 MAR2DMP := $(FORMATTING_DIR)/target/release/mar2dmp
 STRUCT_MUNGER := $(FORMATTING_DIR)/target/release/struct_munger
+FEMAPTOOL := $(FORMATTING_DIR)/target/release/femaptool
 
 FORMATTING_TOOLS := $(MAR2DMP) $(STRUCT_MUNGER) $(TILEMAGE)
 

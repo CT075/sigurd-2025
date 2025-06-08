@@ -57,8 +57,8 @@ END_MAIN
 #define PlayerUnit(char, cls, lvl) "UNIT char cls Eirika Level(lvl,Ally,0)"
 
 PlayerUnits:
-PlayerUnit(Eirika,EirikaMasterLord,1) [9,0] 0 0 0 0 [Rapier,Elixir] NoAI
-PlayerUnit(Seth,Assassin,10) [9,20] 0 0 0 0 [Lockpick,SteelSword] NoAI
+PlayerUnit(Eirika,EirikaMasterLord,1) [9,19] 0 0 0 0 [Rapier,Elixir] NoAI
+PlayerUnit(Seth,Paladin,10) [9,20] 0 0 0 0 [Lockpick,IronSword] NoAI
 UNIT
 
 ALIGN 4

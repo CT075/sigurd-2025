@@ -8,6 +8,7 @@
 #include extraVoices/main.event
 #include morphluck/morphluck.lyn.event
 #include forceAnimsOn/forceAnimsOn.lyn.event
+#include UnitActionMenuLib/main.event
 
 // Individual tweaks
 
